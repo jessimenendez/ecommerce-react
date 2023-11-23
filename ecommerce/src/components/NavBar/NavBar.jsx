@@ -4,7 +4,7 @@ import CartWidget from "../CartWidget/CartWidget";
 export default function NavBar() {
   return (
     <nav className="d-flex justify-content-around mt-2">
-      <h4>Tienda App</h4>
+      <img src="/img/Ashley.png" alt="logo" style={{width: "80px"}}></img>
       <div>
         <Link to="/">
           <button className="btn btn-outline-dark mx-2">Home</button>
