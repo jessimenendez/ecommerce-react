@@ -2,18 +2,29 @@ import {Box, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
 import { useContext, useState } from "react";
 import { FirebaseContext } from "../../context/FirebaseContext";
 import { CartContext } from "../../context/CartContext";
+import { useToast } from '@chakra-ui/react'
 
 export const Formulario = () => {
-  const { addOrderDB } = useContext(FirebaseContext);
+  const { addOrderDB, idOrder } = useContext(FirebaseContext);
   const {cartItems, totalCartItems } = useContext(CartContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const toast = useToast();
+
+  console.log(idOrder)
 
   const handleForm = (e) => {
     e.preventDefault();
     addOrderDB(cartItems, {name, email}, totalCartItems);    
     setName("");
     setEmail("");
+    toast({
+      title: 'Orden creada',
+      description: `La orden ha sido creada con el ID ${idOrder} `,
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    })
   };
 
   return (
@@ -31,7 +42,7 @@ export const Formulario = () => {
           <Button colorScheme="green" onClick={handleForm}>
             Finalizar compra
           </Button>
-      </Box>
+    </Box>
 
   );
 };

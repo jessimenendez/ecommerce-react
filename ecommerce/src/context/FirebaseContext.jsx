@@ -8,6 +8,7 @@ export const FirebaseContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [idOrder, setIdOrder] = useState(null);
 
   const getProductsDB = (category) => {
     const myProducts = category
@@ -26,7 +27,6 @@ export const FirebaseContextProvider = ({ children }) => {
   const getProductById = (id) => {
     const productRef = doc(db, "products", id);
     getDoc(productRef).then((resp) => {
-      // Verificar si el producto existe
       if (resp.exists()) {
         const prod = {
           id: resp.id,
@@ -51,8 +51,13 @@ export const FirebaseContextProvider = ({ children }) => {
     data: serverTimestamp(),
     total
   }
-  console.log(newOrder)
-  addDoc( collection(db, "orders"), newOrder );
+  try {
+    const docRef = addDoc(collection(db, 'orders'), newOrder);
+    setIdOrder(docRef.id)
+  } catch (error) {
+    console.error('Error al agregar la orden a Firestore:', error);
+    throw new Error('Error al agregar la orden a Firestore');
+  }
 }
 
   const objetValue = {
@@ -62,7 +67,8 @@ export const FirebaseContextProvider = ({ children }) => {
     getProductsDB,
     getProductById,
     discountStock,
-    addOrderDB
+    addOrderDB,
+    idOrder
   };
 
   return <FirebaseContext.Provider value={objetValue}> {children} </FirebaseContext.Provider>;
