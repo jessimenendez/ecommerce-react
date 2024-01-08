@@ -44,7 +44,7 @@ export const FirebaseContextProvider = ({ children }) => {
     
  }
 
- const addOrderDB = (cartProducts, userData, total) => { 
+ const addOrderDB = async (cartProducts, userData, total) => { 
   const newOrder = {
     buyer: userData,
     items: cartProducts,
@@ -52,7 +52,7 @@ export const FirebaseContextProvider = ({ children }) => {
     total
   }
   try {
-    const docRef = addDoc(collection(db, 'orders'), newOrder);
+    const docRef = await addDoc(collection(db, 'orders'), newOrder);
     setIdOrder(docRef.id)
   } catch (error) {
     console.error('Error al agregar la orden a Firestore:', error);

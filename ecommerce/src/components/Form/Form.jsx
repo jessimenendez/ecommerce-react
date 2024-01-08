@@ -6,12 +6,11 @@ import { useToast } from '@chakra-ui/react'
 
 export const Formulario = () => {
   const { addOrderDB, idOrder } = useContext(FirebaseContext);
-  const {cartItems, totalCartItems } = useContext(CartContext);
+  const {cartItems, totalCartItems, clearCartItems } = useContext(CartContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const toast = useToast();
 
-  console.log(idOrder)
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -25,6 +24,7 @@ export const Formulario = () => {
       duration: 9000,
       isClosable: true,
     })
+    clearCartItems()
   };
 
   return (
