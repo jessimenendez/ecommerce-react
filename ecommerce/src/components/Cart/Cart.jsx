@@ -1,6 +1,7 @@
 import { Card, CardBody, CardHeader, Heading, CardFooter, Button, Text, Box} from '@chakra-ui/react'
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
+import { Formulario } from '../Form/Form';
 
 export const Cart = () => {
 
@@ -27,6 +28,7 @@ export const Cart = () => {
     <Box>
       <Text>Precio total: ${totalCartItems}</Text>
     </Box>
+    <Formulario></Formulario>
     </Box> 
-
+    
 )};

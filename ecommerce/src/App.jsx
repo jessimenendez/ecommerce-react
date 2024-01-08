@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<ItemListContainer />} />
         <Route path="/category/:category" element={<ItemListContainer />} />    
         <Route path="/cart" element={<Cart/>} />
-        <Route path="/cart" element={<Formulario/>} />
+        {/* <Route path="/cart" element={<Formulario/>} /> */}
       </Routes>
     </BrowserRouter>
     </CartContextProvider>

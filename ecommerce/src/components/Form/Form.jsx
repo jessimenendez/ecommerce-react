@@ -17,7 +17,7 @@ export const Formulario = () => {
   };
 
   return (
-    <Box p={4} onSubmit={handleForm}>
+    <Box p={4}>
           <FormControl mb={4}>
             <FormLabel htmlFor="nombre">Nombre:</FormLabel>
             <Input type="text" id="nombre" placeholder="Ingrese su nombre" value={name} onChange={(e) => setName(e.target.value)} />
@@ -28,8 +28,8 @@ export const Formulario = () => {
             <Input type="email" id="email" placeholder="Ingrese su correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} />
           </FormControl>
 
-          <Button type="submit" colorScheme="blue">
-            Comprar
+          <Button colorScheme="green" onClick={handleForm}>
+            Finalizar compra
           </Button>
       </Box>
       
