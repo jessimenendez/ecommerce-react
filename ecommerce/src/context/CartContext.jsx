@@ -4,15 +4,15 @@ export const CartContext = createContext(null);
 
 export const CartContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  const [totalCartItems, setTotalCartItems] = useState(0);
+  const [totalCartItems, setTotalCartItems] = useState(0)
   const [totalQuantity, setTotalQuantity] = useState(0);
 
   const addItem = (item, quantity) => {
-    const { id, name, price } = item;
+    const { id, name, price, description } = item;
     const index = cartItems.findIndex((product) => product.id === id);
 
-    if (index !== -1) {
-    
+    if (index !== -1) {   
+      //hago una copia del array, para no manipular el estado 
       const cartItemsCopy = [...cartItems];
       cartItemsCopy[index].quantity += quantity;
       cartItemsCopy[index].subTotal = cartItemsCopy[index].quantity * cartItemsCopy[index].price;
@@ -23,6 +23,7 @@ export const CartContextProvider = ({ children }) => {
         name,
         price,
         quantity,
+        description,
         subTotal: quantity * price,
       };
 
@@ -56,7 +57,7 @@ export const CartContextProvider = ({ children }) => {
     useEffect( () => { 
             handleTotal();
             handleTotalQuantity();
-     }, [cartItems] )
+     }, [cartItems] );
 
   const objetValue = {
     cartItems,
