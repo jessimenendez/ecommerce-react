@@ -14,8 +14,9 @@ export const CardItem = ({ id, name, price, description, stock }) => {
             <Card maxW='sm' key={id}>
                 <CardBody>
                 <Image
+                    boxSize='150px'
                     src='https://acdn.mitiendanube.com/stores/001/074/259/products/espana11-c5045aede0e1d6723b16363884334329-640-0.jpg'
-                    alt='Green double couch with wooden legs'
+                    alt='imagen del producto'
                     borderRadius='lg'
                 />
                 <Stack mt='6' spacing='3'>
@@ -24,7 +25,7 @@ export const CardItem = ({ id, name, price, description, stock }) => {
                     {description}
                     </Text>
                     <Text color='blue.600' fontSize='2xl'>
-                    {price}
+                    ${price}
                     </Text>
                 </Stack>
                 </CardBody>
@@ -53,24 +54,5 @@ export const CardItem = ({ id, name, price, description, stock }) => {
                 </CardFooter>
             </Card>
 
-
-    // <Card sx={{ maxWidth: 345, margin: 1, padding: 3 }}>
-    //   <Text variant="h5">{name}</Text>
-    //   <Text color="text.secondary">{description}</Text>
-    //   <Text color="text.secondary">Precio: ${price}</Text>
-    //   <Text color="text.secondary">Stock: {stock}</Text>
-    //   <Box display="flex" alignContent="center">
-    //     <Button variant="contained" color="secondary" sx={{ margin: 1 }} onClick={increment}>
-    //       +
-    //     </Button>
-    //     <Text fontSize={30}> {count} </Text>
-    //     <Button variant="contained" color="secondary" sx={{ margin: 1 }} onClick={decrement}>
-    //       -
-    //     </Button>
-    //   </Box>
-    //   <Button size="small" color="primary" variant="contained" onClick={() => addItem( {id, name, price}, count )}>
-    //     Agregar al carrito
-    //   </Button>
-    // </Card>
   );
 };
