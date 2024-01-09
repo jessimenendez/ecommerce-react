@@ -8,7 +8,14 @@ export const CardItem = ({ id, name, price, description, stock }) => {
 
   const { addItem } = useContext(CartContext);
 
-  const { increment, decrement, count } = useCount(0, stock);
+  const { increment, decrement, count, reset } = useCount(0, stock);
+
+  const handleAddItemAndReset = () => { 
+    addItem({id, name, price, description}, count );
+    reset();
+ }
+
+
 
   return (
             <Card maxW='sm' key={id}>
@@ -32,7 +39,7 @@ export const CardItem = ({ id, name, price, description, stock }) => {
                 <Divider />
                 <CardFooter>
                 <ButtonGroup spacing='2'>
-                    <Button size='xs' variant='solid' colorScheme='blue' onClick={() => addItem( {id, name, price, description}, count )}>
+                    <Button size='xs' variant='solid' colorScheme='blue' onClick={handleAddItemAndReset}>
                     Añadir al carrito
                     </Button>
                     <IconButton
